@@ -29,6 +29,7 @@ public abstract class CNodeWebView extends WebView {
             if (!TextUtils.isEmpty(url) && !Navigator.openStandardLink(webView.getContext(), url)) {
                 Navigator.openInBrowser(webView.getContext(), url);
             }
+
             return true;
         }
 
@@ -45,16 +46,27 @@ public abstract class CNodeWebView extends WebView {
     public CNodeWebView(@NonNull Context context) {
         super(context);
         init(context, null, 0, 0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
+
     }
 
     public CNodeWebView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs, 0, 0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
     }
 
     public CNodeWebView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr, 0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
